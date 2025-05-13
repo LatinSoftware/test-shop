@@ -2,6 +2,7 @@ import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const productsInCart = [
   initialData.products[0],
@@ -10,6 +11,10 @@ const productsInCart = [
 ];
 
 function CartPage() {
+  if (productsInCart.length === 0) {
+    redirect("/empty");
+  }
+
   return (
     <section className="flex justify-center items-center mb-72 px-10 sm:p-0">
       <div className="flex flex-col w-[1000px] ">
@@ -47,7 +52,7 @@ function CartPage() {
           </div>
           {/** Order summary */}
 
-          <div className="bg-white rounded-xl shadow-xl p-7">
+          <div className="bg-white rounded-xl shadow-xl p-7 h-fit">
             <h2 className="text-2xl mb-2">Order summary</h2>
             <div className="grid grid-cols-2">
               <span>Products</span>
@@ -57,7 +62,7 @@ function CartPage() {
               <span className="text-right">$ 100.00</span>
 
               <span>Tax</span>
-              <span className="text-right">15%</span>
+              <span className="text-right">15 %</span>
 
               <span className="mt-5 text-2xl">Total:</span>
               <span className="mt-5 text-right text-2xl">$ 100.00</span>
