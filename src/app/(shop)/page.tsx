@@ -9,7 +9,9 @@ interface Props {
   }>;
 }
 
-export const revalidate = 60;
+export const revalidate = 3600;
+
+
 
 export default async function Home({ searchParams }: Props) {
   const page = Number((await searchParams).page) || 1;
