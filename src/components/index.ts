@@ -3,6 +3,7 @@ export * from "./ui/notfound/PageNotFound";
 export * from "./ui/title/index";
 export * from "./ui/sidebar/index";
 export * from "./ui/footer/index"
+export * from "./ui/pagination/index"
 export * from "./products/product-grid/index";
 export * from "./products/product-grid/ProductGridItem";
 export * from "./product/size-selector/index";
