@@ -2,11 +2,12 @@ import type { ValidSizes } from "@/interfaces";
 import clsx from "clsx";
 
 interface Props {
-  selectedSize: ValidSizes;
+  selectedSize: ValidSizes | undefined;
   availableSizes: ValidSizes[];
+  onSizeChanged: (size: ValidSizes) => void;
 }
 
-function SizeSelector({ selectedSize, availableSizes }: Props) {
+function SizeSelector({ selectedSize, availableSizes, onSizeChanged }: Props) {
   return (
     <div className="my-5">
       <h3 className="font-bold mb-4">Sizes</h3>
@@ -18,6 +19,7 @@ function SizeSelector({ selectedSize, availableSizes }: Props) {
               underline: selectedSize === size,
             })}
             key={size}
+            onClick={() => onSizeChanged(size)}
           >
             {size}
           </button>
