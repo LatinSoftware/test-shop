@@ -1,4 +1,5 @@
 "use client";
+import { logout } from "@/actions";
 import { useUIStore } from "@/store";
 import clsx from "clsx";
 import Link from "next/link";
@@ -27,9 +28,10 @@ function Sidebar() {
 
       {/** background blur */}
       {isSidebarOpen && (
-        <div 
-        onClick={() => closeMenu()}
-        className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm " />
+        <div
+          onClick={() => closeMenu()}
+          className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm "
+        />
       )}
 
       {/** side menu */}
@@ -38,7 +40,7 @@ function Sidebar() {
         className={clsx(
           "fixed p-5 right-0 top-0 w-[500px] h-screen z-20 bg-white shadow-2xl transform transition-all duration-300 overflow-y-auto",
           {
-            "translate-x-full": !isSidebarOpen
+            "translate-x-full": !isSidebarOpen,
           }
         )}
       >
@@ -63,7 +65,8 @@ function Sidebar() {
         {/** Menu */}
 
         <Link
-          href="/"
+          href="/profile"
+          onClick={closeMenu}
           className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
         >
           <IoPersonOutline size={30} />
@@ -72,6 +75,7 @@ function Sidebar() {
 
         <Link
           href="/"
+          onClick={closeMenu}
           className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
         >
           <IoTicketOutline size={30} />
@@ -80,24 +84,29 @@ function Sidebar() {
 
         <Link
           href="/"
+          onClick={closeMenu}
           className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
         >
           <IoLogInOutline size={30} />
           <span className="ml-3 text-xl">LogIn</span>
         </Link>
 
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+        <button
+          onClick={async () => {
+            await logout();
+            closeMenu();
+          }}
+          className="flex items-center w-full mt-10 p-2 hover:bg-gray-100 rounded transition-all"
         >
           <IoLogOutOutline size={30} />
           <span className="ml-3 text-xl">LogOut</span>
-        </Link>
+        </button>
 
         <div className="w-full h-px bg-gray-200 my-10" />
 
         <Link
           href="/"
+          onClick={closeMenu}
           className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
         >
           <IoShirtOutline size={30} />
@@ -106,6 +115,7 @@ function Sidebar() {
 
         <Link
           href="/"
+          onClick={closeMenu}
           className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
         >
           <IoTicketOutline size={30} />
@@ -114,6 +124,7 @@ function Sidebar() {
 
         <Link
           href="/"
+          onClick={closeMenu}
           className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
         >
           <IoPeopleOutline size={30} />

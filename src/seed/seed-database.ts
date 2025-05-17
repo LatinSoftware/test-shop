@@ -11,6 +11,7 @@ async function main() {
   await prisma.productImage.deleteMany();
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
+  await prisma.user.deleteMany();
 
   // Seed initial data
 
@@ -52,6 +53,10 @@ async function main() {
       ),
     });
   }
+
+  await prisma.user.createMany({
+    data: initialData.users,
+  });
 
   console.log("Database seeded successfully.");
   process.exit(0);
